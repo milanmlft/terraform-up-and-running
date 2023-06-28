@@ -144,6 +144,6 @@ variable "server_port" {
 }
 
 output "public_ip" {
-  value       = aws_launch_configuration.example
-  description = "The public IP address of the web server"
+  value       = aws_lb.example.dns_name
+  description = "The domain name of the load balancer"
 }
