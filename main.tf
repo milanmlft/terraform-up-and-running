@@ -4,9 +4,9 @@ provider "aws" {
 }
 
 resource "aws_launch_configuration" "example" {
-  image_id                = "ami-0fb653ca2d3203ac1"
-  instance_type           = "t2.micro"
-  securitysecurity_groups = [aws_security_group.instance.id]
+  image_id        = "ami-0fb653ca2d3203ac1"
+  instance_type   = "t2.micro"
+  security_groups = [aws_security_group.instance.id]
 
   user_data = <<-EOF
 				#!/bin/bash
@@ -64,6 +64,6 @@ variable "server_port" {
 }
 
 output "public_ip" {
-  value       = aws_instance.example.public_ip
+  value       = aws_launch_configuration.example
   description = "The public IP address of the web server"
 }
