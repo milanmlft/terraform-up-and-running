@@ -16,12 +16,13 @@ resource "aws_launch_configuration" "example" {
 
   # Required when using a launch configuration with an autoscaling group
   lifecycle {
-	create_before_destroy = true
+    create_before_destroy = true
   }
 }
 
 resource "aws_autoscaling_group" "example" {
   launch_configuration = aws_launch_configuration.example.id
+  vpc_zone_identifier  = data.aws_subnets.default.ids
 
   min_size = 2
   max_size = 10
@@ -42,6 +43,18 @@ resource "aws_security_group" "instance" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+data "aws_vpc" "default" {
+  default = true
+}
+
+data "aws_subnets" "default" {
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.default.id]
+  }
+
 }
 
 variable "server_port" {
