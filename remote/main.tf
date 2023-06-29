@@ -1,9 +1,10 @@
 provider "aws" {
   region = "us-east-2"
+  profile = "milanmlft"
 }
 
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "2023-06-29_terraform-up-and-running-state"
+  bucket = "2023-06-29-terraform-up-and-running-state"
 
   # Prevent accidental deletion of this S3 bucket
   lifecycle {
