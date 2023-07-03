@@ -1,3 +1,9 @@
+variable "db_name" {
+  description = "The name of the database"
+  type        = string
+  default     = "example_database_stage"
+}
+
 variable "db_username" {
   description = "The username for the database"
   type        = string
